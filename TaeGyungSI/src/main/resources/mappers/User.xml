@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.taegyungsi.dao.UserDao">
+    <select id="findById" parameterType="String"
+            resultType="User">
+        SELECT
+            ID
+             ,USERNAME
+             ,EMAIL
+             ,PASSWORD
+             ,ROLES
+        FROM
+            TB_USER_JWT_HBS
+        WHERE ID= #{id}
+    </select>
+
+    <select id="findByName" parameterType="String"
+            resultType="User">
+        SELECT
+            ID
+             ,USERNAME
+             ,EMAIL
+             ,PASSWORD
+             ,ROLES
+        FROM
+            TB_USER_JWT_HBS
+        WHERE USERNAME= #{username}
+    </select>
+
+    <insert id="insertUser" parameterType="User">
+            INSERT INTO TB_USER_JWT_HBS
+            (
+                ID
+            ,USERNAME
+            ,EMAIL
+            ,PASSWORD
+            ,ROLES
+            ) VALUES (
+                     SQ_USER_HBS.NEXTVAL
+                     ,#{username}
+                     ,#{email}
+                     ,#{password}
+                     ,#{roles}
+                     )
+    </insert>
+
+</mapper>
